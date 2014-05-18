@@ -34,6 +34,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         try {
             mCamera.setPreviewDisplay(holder);
             mCamera.startPreview();
+            setWillNotDraw(false);
         } catch (IOException e) {
             //Log.d(TAG, "Error setting camera preview: " + e.getMessage());
         }
@@ -71,4 +72,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             //Log.d(TAG, "Error starting camera preview: " + e.getMessage());
         }
     }
+    
+	@SuppressLint("DrawAllocation")
+	@Override
+	public void onDraw(Canvas canvas) {
+		// DRAWING
+		Paint paint = new Paint();
+		paint.setColor(Color.BLACK);
+		canvas.drawLine(0, 0, 100, 100, paint);
+	}
 }
